@@ -1,0 +1,55 @@
+%{
+#include <stdio.h>
+#include <ctype.h>
+int yylex (void);
+int yyerror (char *s);
+%}
+
+%token INT
+%token VOID
+%token MAIN
+%token LPARENS
+%token RPARENS
+%token LBRACE
+%token RBRACE
+%token ASSIGN
+%token SEMICOLON
+%token COMMA
+%token RETURN
+%token NUM
+%token IDE
+
+%% /* Grammar rules */
+transunit: maindec1 body
+;
+maindec1: type MAIN arg
+;
+type: INT | VOID
+;
+arg: LPARENS type RPARENS
+;
+body: LBRACE dec1 statseq RBRACE
+;
+dec1: /* empty */
+  | type variablelist SEMICOLON
+;
+variablelist: variable
+  | variable COMMA variablelist
+;
+statseq: returnstat
+  | commandseq SEMICOLON returnstat
+;
+commandseq: command
+  | commandseq SEMICOLON command
+;
+command: variable ASSIGN expr
+;
+variable: IDE
+;
+expr: NUM
+;
+returnstat: RETURN returnarg SEMICOLON
+;
+returnarg: LPARENS IDE RPARENS | LPARENS NUM RPARENS
+;
+%%

@@ -1,1 +1,17 @@
-flex input file
+%{
+  #include "sde1.tab.h"
+  extern int yylex();
+%}
+
+%option nounput
+%option noinput
+
+char [A-E]*
+%%
+a return A;
+b return B;
+c return C;
+d return D;
+e return E;
+-[a-e] return yyerror(yytext);
+%%
