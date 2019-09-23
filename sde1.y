@@ -15,7 +15,9 @@ int yyerror (char *s);
 %token RPARENS
 
 %% /* Grammar rules */
+
 string: a b c d e {
+printf("a %d b %d c %d d %d e %d\n", $1,$2,$3,$4,$5);
 if (($1 == $5) && ($3 == $4) && ($1 >0) && ($2 >0) && ($3 >0) && ($4 >0) && ($5 >0))
   return 0;
 else
@@ -23,6 +25,7 @@ else
 }
 |
 e d c b a {
+//printf("e %d d %d c %d b %d a %d\n", $1,$2,$3,$4,$5);
 if (($1 == (2 * $5)) && ($3 == (3 * $4)) && ($2 == 2) && ($1 >0) && ($2 >0) && ($3 >0) && ($4 >0) && ($5 >0))
   return 0;
 else
