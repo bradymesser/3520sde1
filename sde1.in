@@ -13,5 +13,4 @@ b return B;
 c return C;
 d return D;
 e return E;
--[a-e] return yyerror(yytext);
 %%
