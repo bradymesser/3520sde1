@@ -25,4 +25,15 @@ run:
 	-./sde1 <abcdeabcdf
 	-./sde1 <eeeeddccccccbbaa
 	-./sde1 <eeeeddcccccbbaa
-	-./sde1 <
+
+test:
+	-./sde1 <edcba
+	-./sde1 <abcde_abcde
+	-./sde1 <eeeeddccccccbbaaeeeeddccccccbbaa
+	-./sde1 <aabcccdddee
+	-./sde1 <abcdeeeeddccccccbbaa
+	-./sde1 <fabcde
+	-./sde1 <abcdee
+	-./sde1 <acde
+	-./sde1 <eeeeeeddcccbaaa
+	-./sde1 <eddcccbae

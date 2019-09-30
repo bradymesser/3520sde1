@@ -36,7 +36,11 @@ else
 }
 |
 a b c d e z {
-return 1;
+return yyerror("c");
+}
+|
+e d c b a z {
+return yyerror("c");
 }
 |
 a b c d e a {
