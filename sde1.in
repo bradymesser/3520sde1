@@ -17,7 +17,7 @@ c return C;
 d return D;
 e return E;
 . {
-printf("%s\n",yytext);
-return -1;
+printf("%s",yytext);
+return Z;
 }
 %%

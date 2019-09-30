@@ -4,7 +4,6 @@
 #include <string.h>
 int yylex (void);
 int yyerror (char *s);
-extern int cheatCode;
 %}
 
 %token A
@@ -15,6 +14,9 @@ extern int cheatCode;
 %token Z
 %% /* Grammar rules */
 
+correct:
+string
+;
 string: a b c d e {
 // useful for debugging
 //printf("a %d b %d c %d d %d e %d\n", $1,$2,$3,$4,$5);
@@ -37,8 +39,36 @@ a b c d e z {
 return 1;
 }
 |
-a b c d e a b c d e {
-return 1;
+a b c d e a {
+return yyerror("c");
+}
+|
+a b c d e b {
+return yyerror("c");
+}
+|
+a b c d e c {
+return yyerror("c");
+}
+|
+a b c d e d {
+return yyerror("c");
+}
+|
+e d c b a e {
+return yyerror("c");
+}
+|
+e d b c a d {
+return yyerror("c");
+}
+|
+e d b c a b {
+return yyerror("c");
+}
+|
+e d b c a c {
+return yyerror("c");
 }
 ;
 
@@ -67,8 +97,8 @@ e: E e {$$=$2+1;}
 e: E {$$=1;}
 ;
 
-z: Z z {$$=$2+1;}
+z: Z z {return yyerror("z");}
 ;
-z: Z {$$=1;}
+z: Z {return yyerror("z");}
 ;
 %%
